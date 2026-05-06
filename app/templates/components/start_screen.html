@@ -1,54 +1,56 @@
 <div id="game-container">
-<div class="flex flex-col items-center justify-center min-h-full p-6">
-    <div class="text-center max-w-md py-8">
-        <!-- Hero Title with Playful Effects -->
-        <div class="mb-3">
-            <h1 class="text-5xl font-black text-primary letter-wider mb-2 animate-gentle-float">
-                🎉 Soc Ops
-            </h1>
-            <p class="text-2xl font-extra-bold text-secondary mb-1">Social Bingo</p>
-            <p class="text-lg text-primary-soft font-semibold letter-wide">Let's mingle & win!</p>
+<div class="start-page">
+    <div class="start-card">
+        <!-- Eyebrow badge -->
+        <span class="start-eyebrow">Social Bingo · Team Edition</span>
+
+        <!-- Title with painted-underline on "Ops" -->
+        <h1 class="start-title">Soc <span class="start-highlight">Ops</span></h1>
+
+        <!-- Subline -->
+        <p class="start-subline">Find your people. Mark your card. Claim your glory.</p>
+
+        <!-- Dashed divider -->
+        <hr class="start-divider">
+
+        <!-- Steps section -->
+        <p class="start-steps-label">HOW TO PLAY</p>
+
+        <div class="start-steps">
+            <div class="start-step start-step-1">
+                <span class="start-step-icon">👥</span>
+                <div class="start-step-body">
+                    <p class="start-step-title">Find</p>
+                    <p class="start-step-desc">Walk the room and find colleagues who match the squares on your card.</p>
+                </div>
+            </div>
+            <div class="start-step start-step-2">
+                <span class="start-step-icon">✅</span>
+                <div class="start-step-body">
+                    <p class="start-step-title">Match</p>
+                    <p class="start-step-desc">Tap a square when someone fits the description.</p>
+                </div>
+            </div>
+            <div class="start-step start-step-3">
+                <span class="start-step-icon">🎊</span>
+                <div class="start-step-body">
+                    <p class="start-step-title">Win!</p>
+                    <p class="start-step-desc">Get 5 in a row — across, down or diagonal — and shout BINGO!</p>
+                </div>
+            </div>
         </div>
 
-        <!-- Decorative divider -->
-        <div class="my-8 flex items-center justify-center gap-2">
-            <div class="h-1 w-12 bg-gradient-to-r from-secondary to-accent-pink rounded-full"></div>
-            <span class="text-3xl">✨</span>
-            <div class="h-1 w-12 bg-gradient-to-r from-accent-pink to-accent-yellow rounded-full"></div>
-        </div>
-
-        <!-- How to Play Card - Playful -->
-        <div class="bg-white rounded-2xl p-8 shadow-lg border-2 border-primary-soft mb-10 hover-lift">
-            <h2 class="font-extra-bold text-primary text-xl mb-4 letter-wide">HOW TO PLAY</h2>
-            <ul class="text-left text-gray-700 text-base space-y-3 font-semibold">
-                <li class="flex items-start gap-3">
-                    <span class="text-2xl">👥</span>
-                    <span>Find people matching the questions</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <span class="text-2xl">✅</span>
-                    <span>Tap a square when you find a match</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <span class="text-2xl">🎊</span>
-                    <span>Get 5 in a row to win!</span>
-                </li>
-            </ul>
-        </div>
-
-        <!-- CTA Button - Bold & Playful -->
+        <!-- CTA button -->
         <button
             hx-post="/start"
             hx-target="#game-container"
             hx-swap="outerHTML"
-            class="w-full bg-gradient-to-r from-primary to-accent-pink text-white font-black py-4 px-8 rounded-full text-lg uppercase letter-wide shadow-lg hover-scale active-scale transition-all duration-200 hover:shadow-xl">
-            🎮 Let's Play
+            class="start-cta">
+            Let's Play
         </button>
 
-        <!-- Fun Footer Text -->
-        <p class="mt-8 text-sm text-primary font-semibold opacity-75">
-            No experience needed. Just be ready to mingle! 🌟
-        </p>
+        <!-- Caption -->
+        <p class="start-caption">No experience needed — just bring good vibes ✨</p>
     </div>
 </div>
 </div>

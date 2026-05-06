@@ -409,3 +409,202 @@ button:disabled {
     font-size: 0.85rem;
     font-weight: 700;
 }
+
+/* ===== START SCREEN ===== */
+
+/* Full-page wrapper: warm off-white with subtle dot-grid texture */
+.start-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    background-color: #fdfaf6;
+    background-image: radial-gradient(circle, #cfc3b0 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+/* Centered content card */
+.start-card {
+    width: 100%;
+    max-width: 26rem;
+    text-align: center;
+}
+
+/* Pill badge above title */
+.start-eyebrow {
+    display: inline-block;
+    padding: 0.25rem 0.875rem;
+    background-color: #fde8d8;
+    color: #9a5030;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+}
+
+/* Main title — serif, dark navy */
+.start-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0 0 0.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+}
+
+/* Painted-underline accent on the highlighted word */
+.start-highlight {
+    background: linear-gradient(to bottom, transparent 55%, #f97316 55%, #f97316 92%, transparent 92%);
+    padding: 0 0.1em;
+}
+
+/* Friendly tagline */
+.start-subline {
+    font-size: 1rem;
+    color: #4a3f60;
+    margin: 0 0 1.25rem;
+    line-height: 1.5;
+}
+
+/* Hand-drawn-feel dashed divider */
+.start-divider {
+    border: none;
+    border-top: 2px dashed #e0d0bc;
+    margin: 0 auto 1.25rem;
+    width: 70%;
+}
+
+/* Uppercase label above step cards */
+.start-steps-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #a08870;
+    margin: 0 0 0.75rem;
+}
+
+/* Vertical stack of step cards */
+.start-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+}
+
+/* Base step card: flex row, rounded, soft shadow */
+.start-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    padding: 1rem 1.125rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    text-align: left;
+    --start-rot: 0deg;
+    animation: start-slide-up 400ms ease both;
+}
+
+/* Blush pink card, tilted left */
+.start-step-1 {
+    background-color: #fce4ec;
+    --start-rot: -1deg;
+    animation-delay: 0ms;
+}
+
+/* Soft mint card, tilted right */
+.start-step-2 {
+    background-color: #e8f5e9;
+    --start-rot: 1deg;
+    animation-delay: 100ms;
+}
+
+/* Pale yellow card, slight left tilt */
+.start-step-3 {
+    background-color: #fffde7;
+    --start-rot: -0.5deg;
+    animation-delay: 200ms;
+}
+
+/* Large emoji icon on left of card */
+.start-step-icon {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 0.1rem;
+}
+
+/* Text column inside card */
+.start-step-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.start-step-title {
+    font-weight: 700;
+    color: #1a1a2e;
+    font-size: 0.95rem;
+    margin: 0 0 0.2rem;
+}
+
+.start-step-desc {
+    font-size: 0.83rem;
+    color: #5a4e68;
+    margin: 0;
+    line-height: 1.45;
+}
+
+/* Coral CTA button — clean lift on hover, no glow */
+.start-cta {
+    width: 100%;
+    padding: 0.9rem 2rem;
+    background-color: #f97316;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.05rem;
+    border-radius: 9999px;
+    letter-spacing: 0.02em;
+    transition: transform 200ms ease, background-color 200ms ease;
+}
+
+.start-cta:hover {
+    background-color: #ea6c0a;
+    transform: translateY(-2px);
+}
+
+/* Muted caption below button */
+.start-caption {
+    margin-top: 0.875rem;
+    margin-bottom: 0;
+    font-size: 0.78rem;
+    color: #a09070;
+}
+
+/* Staggered slide-up entrance: uses --start-rot to preserve card tilt */
+@keyframes start-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px) rotate(var(--start-rot));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(var(--start-rot));
+    }
+}
+
+/* Respect reduced-motion: show cards immediately, still tilted */
+@media (prefers-reduced-motion: reduce) {
+    .start-step {
+        animation: none;
+        transform: rotate(var(--start-rot));
+    }
+
+    .start-cta {
+        transition: none;
+    }
+}
