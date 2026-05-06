@@ -1,4 +1,4 @@
-from app.data import FREE_SPACE, QUESTIONS
+from apptest FREE_SPACE, QUESTIONS
 from app.game_logic import (
     CENTER_INDEX,
     check_bingo,
