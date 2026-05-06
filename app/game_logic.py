@@ -79,3 +79,28 @@ def get_winning_square_ids(line: BingoLine | None) -> set[int]:
 def get_scavenger_progress(items: list[BingoSquareData]) -> int:
     """Count how many scavenger hunt items are marked."""
     return sum(1 for item in items if item.is_marked)
+
+
+def generate_card_deck() -> list[BingoSquareData]:
+    """Generate a shuffled deck of cards (all 24 questions)."""
+    shuffled_questions = random.sample(QUESTIONS, len(QUESTIONS))
+    return [
+        BingoSquareData(id=i, text=question)
+        for i, question in enumerate(shuffled_questions)
+    ]
+
+
+def get_current_card(
+    deck: list[BingoSquareData], current_index: int
+) -> BingoSquareData | None:
+    """Get the card at the current index.
+
+    Returns None if index is out of bounds."""
+    if 0 <= current_index < len(deck):
+        return deck[current_index]
+    return None
+
+
+def is_deck_complete(current_index: int, deck_size: int) -> bool:
+    """Check if all cards in the deck have been drawn."""
+    return current_index >= deck_size

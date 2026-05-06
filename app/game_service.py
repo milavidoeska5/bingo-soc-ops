@@ -3,9 +3,12 @@ from dataclasses import dataclass, field
 from app.game_logic import (
     check_bingo,
     generate_board,
+    generate_card_deck,
     generate_scavenger_hunt_items,
+    get_current_card,
     get_scavenger_progress,
     get_winning_square_ids,
+    is_deck_complete,
     toggle_square,
 )
 from app.models import BingoLine, BingoSquareData, GameMode, GameState
@@ -20,6 +23,7 @@ class GameSession:
     board: list[BingoSquareData] = field(default_factory=list)
     winning_line: BingoLine | None = None
     show_bingo_modal: bool = False
+    current_card_index: int = 0  # For card deck mode
 
     @property
     def winning_square_ids(self) -> set[int]:
@@ -50,6 +54,29 @@ class GameSession:
         )
 
     @property
+    def is_card_deck_mode(self) -> bool:
+        return self.game_mode == GameMode.CARD_DECK
+
+    @property
+    def current_card(self) -> BingoSquareData | None:
+        return get_current_card(self.board, self.current_card_index)
+
+    @property
+    def is_deck_complete(self) -> bool:
+        return is_deck_complete(self.current_card_index, len(self.board))
+
+    @property
+    def card_deck_progress(self) -> int:
+        """Return how many cards have been drawn.
+
+        Current card index + 1, capped at total."""
+        return min(self.current_card_index + 1, len(self.board))
+
+    @property
+    def card_deck_total(self) -> int:
+        return len(self.board)
+
+    @property
     def modal_title(self) -> str:
         if self.is_scavenger_mode:
             return "MISSION COMPLETE!"
@@ -76,6 +103,8 @@ class GameSession:
     def _create_board(self, mode: GameMode) -> list[BingoSquareData]:
         if mode == GameMode.SCAVENGER:
             return generate_scavenger_hunt_items()
+        elif mode == GameMode.CARD_DECK:
+            return generate_card_deck()
         return generate_board()
 
     def _complete_game(self, winning_line: BingoLine | None = None) -> None:
@@ -89,6 +118,7 @@ class GameSession:
         self.winning_line = None
         self.game_state = GameState.PLAYING
         self.show_bingo_modal = False
+        self.current_card_index = 0
 
     def handle_square_click(self, square_id: int) -> None:
         if self.game_state != GameState.PLAYING:
@@ -105,12 +135,20 @@ class GameSession:
             if bingo is not None:
                 self._complete_game(bingo)
 
+    def draw_next_card(self) -> None:
+        """Advance to the next card in the deck.
+
+        Does nothing if deck is complete."""
+        if not self.is_deck_complete:
+            self.current_card_index += 1
+
     def reset_game(self) -> None:
         self.game_state = GameState.START
         self.game_mode = GameMode.BINGO
         self.board = []
         self.winning_line = None
         self.show_bingo_modal = False
+        self.current_card_index = 0
 
     def dismiss_modal(self) -> None:
         self.show_bingo_modal = False

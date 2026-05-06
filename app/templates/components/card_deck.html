@@ -1,0 +1,38 @@
+<div class="card-deck-container">
+    <!-- Progress Header -->
+    <div class="text-center">
+        <h2 class="card-deck-header">🎴 Card Deck</h2>
+        <p class="card-deck-progress">
+            Card {{ session.card_deck_progress }} of {{ session.card_deck_total }}
+        </p>
+    </div>
+
+    <!-- Card Display -->
+    <button
+        hx-post="/draw-card"
+        hx-target="#game-container"
+        hx-swap="outerHTML"
+        {% if session.is_deck_complete %}disabled{% endif %}
+        class="card {% if session.current_card %}card-new{% endif %}"
+        aria-label="Tap to draw next card">
+        {% if session.current_card %}
+        <span class="card-text">{{ session.current_card.text }}</span>
+        {% else %}
+        <span class="card-text">Tap to start!</span>
+        {% endif %}
+    </button>
+
+    <!-- Completion Message -->
+    {% if session.is_deck_complete %}
+    <div class="text-center">
+        <p class="text-xl font-bold text-primary mb-4">🎉 You've drawn all {{ session.card_deck_total }} cards!</p>
+        <button
+            hx-post="/reset"
+            hx-target="#game-container"
+            hx-swap="outerHTML"
+            class="px-6 py-3 bg-gradient-to-r from-primary to-accent-pink text-white font-bold rounded-lg shadow-lg hover-scale transition-all duration-200">
+            Play Again
+        </button>
+    </div>
+    {% endif %}
+</div>

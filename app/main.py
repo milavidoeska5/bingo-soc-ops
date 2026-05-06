@@ -97,6 +97,13 @@ async def dismiss_modal(request: Request) -> Response:
     return _render_game_screen(request, session)
 
 
+@app.post("/draw-card", response_class=HTMLResponse)
+async def draw_card(request: Request) -> Response:
+    session = _get_game_session(request)
+    session.draw_next_card()
+    return _render_game_screen(request, session)
+
+
 def run() -> None:
     """Entry point for the application."""
     import uvicorn

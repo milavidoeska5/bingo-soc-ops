@@ -497,6 +497,250 @@ animation: rainbow-pulse 1.5s ease-in-out;
   outline: 2px solid #7C3AED;
   outline-offset: 2px;
 }
+
+---
+
+## 6. Card Deck Shuffle Mode
+
+**Concept**: Players tap to reveal a single card from a shuffled deck of questions. Each tap draws a new random question. Designed for quick, social icebreaker questions.
+
+### Card Layout
+
+The card deck screen displays:
+- **Header**: "Card Deck" mode name with progress counter (e.g., "Card 3 of 24")
+- **Card Container**: Large, centered, tappable card displaying a single question
+- **Card Visual**: Resembles a physical deck card with:
+  - Rounded corners (larger radius for card feel)
+  - Soft shadow for depth
+  - Gradient background based on card state
+  - Bold, readable question text centered on card
+  - Subtle glow effect when hovered
+
+### Interaction Flow
+
+1. **Start**: Player selects "Card Deck" mode
+2. **First Card**: Random card from deck is displayed
+3. **Draw Next**: Tap card to draw next random card
+4. **Deck Exhaustion**: When all 24 cards shown, display completion state
+5. **Completion**: Option to reset or return to mode select
+
+### Card Styling
+
+**Unmarked Card** (Cyberpunk Theme):
+- Background: Dark navy gradient (#1a1a2e → #0f3460)
+- Border: 2px neon cyan (#2DD4BF) for arcade glow
+- Shadow: Multi-layer teal/pink glow + inset cyan highlight
+- Scanlines: Subtle repeating gradient overlay for cyberpunk feel
+- Text: Neon yellow (#FACC15) with dual glow (yellow + cyan)
+- Font: Monospace for arcade aesthetic
+
+**Hover Card**:
+- Scale: 1.08x with 3D perspective tilt
+- Border: Changes to neon yellow (#FACC15)
+- Shadow: Enhanced multi-layer cyan/pink glow
+- Transform: Slight translateY(-8px) lift + rotateX(5deg)
+- Cursor: Pointer
+
+**Active/Tapped**:
+- Animation: Scale-pop for tactile feedback
+- Transition: Smooth morphing to next card with flip animation
+
+**Completion Card** (Rainbow Celebration):
+- Background: Rainbow gradient (pink → yellow → cyan)
+- Border: Neon yellow with enhanced glow
+- Shadow: Multi-layer celebration glow (yellow + pink + cyan + inset)
+- Animation: Card-celebrate (scale + rotate bounce)
+- Text: Dark navy (#0f3460) with bright yellow+pink glow
+
+### CSS Classes for Card Deck
+
+```css
+.card-deck-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 1.5rem;
+}
+
+.card-deck-header {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2DD4BF; /* Neon cyan */
+  text-align: center;
+  text-shadow: 0 0 10px rgba(45, 212, 191, 0.6);
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.1em;
+}
+
+.card-deck-progress {
+  font-size: 0.875rem;
+  color: #FACC15; /* Neon yellow */
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
+}
+
+.card {
+  width: 100%;
+  max-width: 350px;
+  aspect-ratio: 3 / 4;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border: 2px solid #2DD4BF; /* Neon cyan */
+  border-radius: 0.5rem;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow:
+    0 0 20px rgba(45, 212, 191, 0.4),
+    0 0 40px rgba(236, 72, 153, 0.2),
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    inset 0 0 20px rgba(45, 212, 191, 0.1);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  font-family: 'Courier New', monospace;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 2px,
+    rgba(45, 212, 191, 0.03) 2px,
+    rgba(45, 212, 191, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.card:hover {
+  transform: scale(1.08) translateY(-8px) rotateX(5deg);
+  border-color: #FACC15; /* Neon yellow */
+  box-shadow:
+    0 0 30px rgba(45, 212, 191, 0.8),
+    0 0 60px rgba(45, 212, 191, 0.4),
+    0 0 90px rgba(236, 72, 153, 0.3);
+}
+
+.card-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FACC15; /* Neon yellow */
+  text-align: center;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  word-break: break-word;
+  position: relative;
+  z-index: 3;
+  text-shadow:
+    0 0 10px rgba(250, 204, 21, 0.8),
+    0 0 20px rgba(45, 212, 191, 0.4);
+  font-family: 'Courier New', monospace;
+}
+
+.card:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.card-completed {
+  background: linear-gradient(135deg, #EC4899 0%, #FACC15 50%, #2DD4BF 100%);
+  border-color: #FACC15;
+  box-shadow:
+    0 0 30px rgba(250, 204, 21, 0.8),
+    0 0 60px rgba(236, 72, 153, 0.6),
+    0 0 90px rgba(45, 212, 191, 0.4),
+    0 30px 60px rgba(0, 0, 0, 0.8),
+    inset 0 0 30px rgba(250, 204, 21, 0.2);
+  animation: card-celebrate 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card-completed .card-text {
+  color: #0f3460; /* Dark text on gradient */
+  font-size: 2rem;
+  text-shadow:
+    0 0 20px rgba(250, 204, 21, 1),
+    0 0 40px rgba(236, 72, 153, 0.8);
+}
+```
+
+### Animation for Card Draw
+
+**Enhanced 3D Flip Animation (Chrome-Compatible):**
+- Card starts rotated 90° away from viewer (back-facing)
+- Subtle tilt on X-axis for realistic 3D depth
+- Blur effect (8px → 0px) clears as card comes into focus
+- Midpoint shows card at 45° rotation with blur transition
+- Lands flat with full opacity and scale
+- Uses vendor prefixes (-webkit-) for Chrome/Safari compatibility
+
+```css
+@keyframes card-flip-in {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) rotateY(-90deg) rotateX(10deg) scale(0.8);
+    -webkit-transform: perspective(1200px) rotateY(-90deg) rotateX(10deg) scale(0.8);
+    filter: blur(8px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: perspective(1200px) rotateY(-45deg) rotateX(5deg) scale(0.95);
+    -webkit-transform: perspective(1200px) rotateY(-45deg) rotateX(5deg) scale(0.95);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) rotateY(0deg) rotateX(0deg) scale(1);
+    -webkit-transform: perspective(1200px) rotateY(0deg) rotateX(0deg) scale(1);
+    filter: blur(0px);
+  }
+}
+
+.card-deck-container {
+  perspective: 1200px; /* Establishes 3D space for children */
+  -webkit-perspective: 1200px;
+}
+
+.card {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card-new {
+  animation: card-flip-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes card-celebrate {
+  0% {
+    transform: scale(0.95) rotateZ(0deg);
+  }
+  50% {
+    transform: scale(1.05) rotateZ(2deg);
+  }
+  100% {
+    transform: scale(1) rotateZ(0deg);
+  }
+}
+```
+
+**Animation Breakdown:**
+- **Card Flip**: 0.8s with cubic-bezier bounce curve (1.56 peak) for playful feel
+- **3D Space**: 1200px perspective for realistic depth perception
+- **Blur Effect**: 8px → 2px → 0px = smooth focus transition
+- **Scale**: 0.8 → 1.0 = card approaching viewer
+- **Rotation**: 90° horizontal flip with 10° X-axis tilt for 3D depth
+- **Card Celebrate**: 0.6s scale+rotate bounce on completion (0.95 → 1.05 → 1.0 scale, 0° → 2° → 0° rotation)
 ```
 
 ### Bingo Square (Marked)
