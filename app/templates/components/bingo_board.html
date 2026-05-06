@@ -10,17 +10,20 @@
         {% if square.is_free_space %}disabled{% endif %}
         class="relative flex items-center justify-center p-2 text-center rounded-lg transition-all duration-200 select-none min-h-[70px] text-xs leading-tight font-semibold
         {%- if square.is_marked %}
-            {%- if is_winning %} bg-celebrate-gold border-4 border-accent-yellow text-gray-900 animate-pulse-glow shadow-lg animate-scale-pop
+            {%- if is_winning %} bg-celebrate-gold border-4 border-amber-700 text-gray-900 animate-pulse-glow shadow-lg animate-scale-pop winning-square-pattern
             {%- else %} bg-celebrate-mint border-4 border-secondary text-gray-900 animate-pulse-glow shadow-md
             {%- endif %}
         {%- else %} bg-white text-gray-800 border-2 border-gray-200 hover-scale active-scale active:bg-gray-50 shadow-sm
         {%- endif %}
-        {%- if square.is_free_space %} font-black text-sm bg-gradient-to-br from-accent-pink to-accent-orange text-white border-4 border-accent-pink shadow-lg cursor-default{% endif %}"
+        {%- if square.is_free_space %} font-black text-sm bg-gradient-to-br from-accent-pink to-accent-orange text-white border-4 border-accent-pink shadow-lg cursor-not-allowed{% endif %}"
         aria-pressed="{{ 'true' if square.is_marked else 'false' }}"
         aria-label="{{ 'Free space' if square.is_free_space else square.text }}">
         <span class="wrap-break-word hyphens-auto">{% if square.is_free_space %}🎯 FREE 🎯{% else %}{{ square.text }}{% endif %}</span>
         {% if square.is_marked and not square.is_free_space %}
         <span class="absolute top-1 right-1 text-lg animate-scale-pop">✨</span>
+        {% endif %}
+        {% if is_winning and square.is_marked and not square.is_free_space %}
+        <span class="absolute top-1 left-1 text-lg animate-scale-pop">🏆</span>
         {% endif %}
     </button>
     {% endfor %}
