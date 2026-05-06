@@ -409,3 +409,245 @@ button:disabled {
     font-size: 0.85rem;
     font-weight: 700;
 }
+
+/* ===== START SCREEN ===== */
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes cta-pulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(236, 72, 153, 0.5), 0 4px 20px rgba(249, 115, 22, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 42px rgba(236, 72, 153, 0.85), 0 4px 42px rgba(249, 115, 22, 0.6);
+    }
+}
+
+/* Full-viewport dark container; defines display font variable */
+.start-screen {
+    position: relative;
+    min-height: 100vh;
+    background-color: #0f0a1e;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --start-font-display: Impact, 'Arial Narrow', sans-serif;
+    --start-title-size: clamp(5rem, 24vw, 9rem);
+}
+
+/* Ambient glow orbs */
+.start-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.32;
+}
+
+.start-orb--pink {
+    width: 520px;
+    height: 520px;
+    background-color: #ec4899;
+    filter: blur(130px);
+    top: -220px;
+    left: -160px;
+}
+
+.start-orb--purple {
+    width: 460px;
+    height: 460px;
+    background-color: #7c3aed;
+    filter: blur(110px);
+    top: -120px;
+    right: -190px;
+}
+
+.start-orb--teal {
+    width: 360px;
+    height: 360px;
+    background-color: #14b8a6;
+    filter: blur(100px);
+    bottom: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Centred content column */
+.start-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 26rem;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+}
+
+/* Eyebrow label */
+.start-eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #a78bfa;
+    animation: fade-up 0.4s ease-out 0ms both;
+}
+
+/* Stacked title */
+.start-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0 0.75rem;
+    font-family: var(--start-font-display);
+    font-weight: 900;
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    animation: fade-up 0.4s ease-out 80ms both;
+}
+
+.start-title-soc,
+.start-title-ops {
+    font-size: var(--start-title-size);
+}
+
+.start-title-soc {
+    color: #ffffff;
+}
+
+.start-title-ops {
+    background: linear-gradient(90deg, #ec4899, #fbbf24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Italic tagline */
+.start-subline {
+    margin: 0 0 1.5rem;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #9ca3af;
+    animation: fade-up 0.4s ease-out 160ms both;
+}
+
+/* Decorative B-I-N-G-O row */
+.start-bingo-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-bottom: 1.75rem;
+    animation: fade-up 0.4s ease-out 240ms both;
+}
+
+.start-grid-cell {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    border-radius: 0.375rem;
+    font-family: var(--start-font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.start-grid-cell--lit {
+    background-color: #7c3aed;
+    border-color: #7c3aed;
+    color: #ffffff;
+    box-shadow: 0 0 14px rgba(124, 58, 237, 0.65);
+}
+
+/* How-to steps (inline against dark bg, no card) */
+.start-steps {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+    animation: fade-up 0.4s ease-out 320ms both;
+}
+
+.start-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.start-step-num {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #ec4899;
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.1rem;
+}
+
+.start-step-body {
+    color: #d1d5db;
+    font-size: 0.875rem;
+    line-height: 1.45;
+}
+
+.start-step-body strong {
+    color: #ffffff;
+    font-weight: 700;
+    margin-right: 0.25rem;
+}
+
+/* CTA pill button */
+.start-cta {
+    display: block;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #ec4899, #f97316);
+    color: #ffffff;
+    font-size: 1.125rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    /* entrance then idle glow pulse */
+    animation: fade-up 0.4s ease-out 400ms both, cta-pulse 2.5s ease-in-out 1400ms infinite;
+}
+
+/* Muted caption below button */
+.start-caption {
+    margin: 0;
+    font-size: 0.75rem;
+    color: rgba(156, 163, 175, 0.65);
+    animation: fade-up 0.4s ease-out 480ms both;
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .start-eyebrow,
+    .start-title,
+    .start-subline,
+    .start-bingo-row,
+    .start-steps,
+    .start-cta,
+    .start-caption {
+        animation: none;
+    }
+}
