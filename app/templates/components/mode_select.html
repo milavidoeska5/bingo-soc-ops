@@ -1,0 +1,30 @@
+<div id="game-container">
+<div class="start-screen">
+    <div class="start-scanlines"></div>
+
+    <div class="start-content">
+        <p class="start-eyebrow">Choose Your Mode</p>
+        <h1 class="start-title">SOC OPS</h1>
+        <p class="start-subline">Pick a play style for this round.</p>
+
+        <div class="start-levels">
+            <button
+                hx-post="/start?mode=bingo"
+                hx-target="#game-container"
+                hx-swap="outerHTML"
+                class="start-level start-level--yellow">
+                <span class="start-level-num">Mode A</span>
+                <span class="start-level-label">Bingo</span>
+            </button>
+            <button
+                hx-post="/start?mode=scavenger"
+                hx-target="#game-container"
+                hx-swap="outerHTML"
+                class="start-level start-level--teal">
+                <span class="start-level-num">Mode B</span>
+                <span class="start-level-label">Scavenger Hunt</span>
+            </button>
+        </div>
+    </div>
+</div>
+</div>

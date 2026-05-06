@@ -9,11 +9,11 @@
         <h2
             class="modal-title animate-bingo-glow"
             style="margin: 0 0 0.4rem; color: #ffffff; font-size: 2.5rem; font-weight: 900; letter-spacing: 0.05em;">
-            BINGO!
+            {{ session.modal_title }}
         </h2>
 
         <p class="modal-subtitle" style="margin: 0 0 1.1rem; color: #ffffff; font-size: 1.05rem; font-weight: 700;">
-            You completed a line!
+            {{ session.modal_subtitle }}
         </p>
 
         <button
@@ -22,11 +22,11 @@
             hx-swap="outerHTML"
             class="modal-button hover-scale active-scale"
             style="width: 100%; padding: 0.75rem 1rem; border-radius: 9999px; border: 3px solid #7c3aed; background-color: #ffffff; color: #7c3aed; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);">
-            Keep Playing
+            {{ session.modal_button_label }}
         </button>
 
         <p class="modal-caption" style="margin: 0.85rem 0 0; color: #fff7ed; font-size: 0.85rem; font-weight: 700;">
-            Great job mixing and mingling!
+            {{ session.modal_caption }}
         </p>
     </div>
 </div>

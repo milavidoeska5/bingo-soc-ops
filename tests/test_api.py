@@ -68,3 +68,68 @@ class TestDismissModal:
         response = client.post("/dismiss-modal")
         assert response.status_code == 200
         assert "🎯 FREE 🎯" in response.text
+
+
+class TestScavengerHuntMode:
+    def test_mode_select_returns_scavenger_hunt_option(
+        self, client: TestClient
+    ) -> None:
+        client.get("/")
+
+        response = client.post("/mode-select")
+
+        assert response.status_code == 200
+        assert "Choose Your Mode" in response.text
+        assert "Bingo" in response.text
+        assert "Scavenger Hunt" in response.text
+
+    def test_start_scavenger_returns_checklist_with_progress_meter(
+        self, client: TestClient
+    ) -> None:
+        client.get("/")
+
+        response = client.post("/start?mode=scavenger")
+
+        assert response.status_code == 200
+        assert "Scavenger Hunt" in response.text
+        assert "0 / 24 found" in response.text
+        assert 'role="progressbar"' in response.text
+        assert 'aria-valuenow="0"' in response.text
+        assert response.text.count('hx-post="/toggle/') == 24
+        assert "FREE SPACE" not in response.text
+
+    def test_scavenger_toggle_updates_progress(self, client: TestClient) -> None:
+        client.get("/")
+        client.post("/start?mode=scavenger")
+
+        response = client.post("/toggle/0")
+
+        assert response.status_code == 200
+        assert "1 / 24 found" in response.text
+        assert 'aria-valuenow="1"' in response.text
+
+    def test_scavenger_completion_shows_completion_modal(
+        self, client: TestClient
+    ) -> None:
+        client.get("/")
+        client.post("/start?mode=scavenger")
+
+        for item_id in range(24):
+            response = client.post(f"/toggle/{item_id}")
+
+        assert response.status_code == 200
+        assert "24 / 24 found" in response.text
+        assert "MISSION COMPLETE!" in response.text
+        assert "You found every match on the list." in response.text
+
+    def test_reset_after_scavenger_returns_start_screen(
+        self, client: TestClient
+    ) -> None:
+        client.get("/")
+        client.post("/start?mode=scavenger")
+
+        response = client.post("/reset")
+
+        assert response.status_code == 200
+        assert "PRESS START" in response.text
+        assert "Scavenger Hunt" not in response.text

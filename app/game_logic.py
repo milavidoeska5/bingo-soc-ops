@@ -19,6 +19,13 @@ def generate_board() -> list[BingoSquareData]:
     ]
 
 
+def generate_scavenger_hunt_items() -> list[BingoSquareData]:
+    """Generate a flat list of scavenger hunt questions."""
+    return [
+        BingoSquareData(id=i, text=question) for i, question in enumerate(QUESTIONS)
+    ]
+
+
 def toggle_square(
     board: list[BingoSquareData], square_id: int
 ) -> list[BingoSquareData]:
@@ -67,3 +74,8 @@ def check_bingo(board: list[BingoSquareData]) -> BingoLine | None:
 def get_winning_square_ids(line: BingoLine | None) -> set[int]:
     """Get the square IDs that are part of a winning line."""
     return set(line.squares) if line else set()
+
+
+def get_scavenger_progress(items: list[BingoSquareData]) -> int:
+    """Count how many scavenger hunt items are marked."""
+    return sum(1 for item in items if item.is_marked)

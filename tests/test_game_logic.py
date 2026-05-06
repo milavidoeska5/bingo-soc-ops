@@ -132,3 +132,52 @@ class TestGetWinningSquareIds:
     def test_returns_square_ids(self) -> None:
         line = BingoLine(type="row", index=0, squares=[0, 1, 2, 3, 4])
         assert get_winning_square_ids(line) == {0, 1, 2, 3, 4}
+
+
+class TestScavengerHuntLogic:
+    def test_generate_scavenger_hunt_items_has_24_questions(self) -> None:
+        from app import game_logic
+
+        generate_scavenger_hunt_items = getattr(
+            game_logic, "generate_scavenger_hunt_items", None
+        )
+        assert callable(generate_scavenger_hunt_items)
+
+        items = generate_scavenger_hunt_items()
+
+        assert len(items) == len(QUESTIONS)
+        assert [item.id for item in items] == list(range(len(QUESTIONS)))
+        assert all(item.is_free_space is False for item in items)
+        assert all(item.is_marked is False for item in items)
+
+    def test_generate_scavenger_hunt_items_uses_same_question_pool(self) -> None:
+        from app import game_logic
+
+        generate_scavenger_hunt_items = getattr(
+            game_logic, "generate_scavenger_hunt_items", None
+        )
+        assert callable(generate_scavenger_hunt_items)
+
+        items = generate_scavenger_hunt_items()
+
+        assert {item.text for item in items} == set(QUESTIONS)
+        assert FREE_SPACE not in {item.text for item in items}
+
+    def test_get_scavenger_progress_counts_marked_items(self) -> None:
+        from app import game_logic
+
+        generate_scavenger_hunt_items = getattr(
+            game_logic, "generate_scavenger_hunt_items", None
+        )
+        get_scavenger_progress = getattr(game_logic, "get_scavenger_progress", None)
+        assert callable(generate_scavenger_hunt_items)
+        assert callable(get_scavenger_progress)
+
+        items = generate_scavenger_hunt_items()
+        marked_items = [
+            item.model_copy(update={"is_marked": item.id in {0, 3, 7}})
+            for item in items
+        ]
+
+        assert get_scavenger_progress(items) == 0
+        assert get_scavenger_progress(marked_items) == 3

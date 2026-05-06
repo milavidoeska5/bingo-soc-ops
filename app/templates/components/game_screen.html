@@ -14,9 +14,27 @@
     </header>
 
     <!-- Fun Instructions -->
+    {% if session.is_scavenger_mode %}
+    <div class="p-4 bg-white shadow-sm">
+        <h2 class="text-xl text-center text-primary">Scavenger Hunt</h2>
+        <p class="text-center text-primary font-semibold">
+            {{ session.scavenger_progress }} / {{ session.scavenger_total }} found
+        </p>
+        <div
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="{{ session.scavenger_total }}"
+            aria-valuenow="{{ session.scavenger_progress }}"
+            style="height: 0.75rem; margin-top: 0.75rem; border-radius: 9999px; background-color: #e5e7eb; overflow: hidden;">
+            <div
+                style="height: 100%; width: {{ (session.scavenger_progress / session.scavenger_total * 100) if session.scavenger_total else 0 }}%; background: linear-gradient(90deg, #7c3aed 0%, #14b8a6 100%);"></div>
+        </div>
+    </div>
+    {% else %}
     <p class="text-center text-primary font-semibold text-base py-3 px-4 bg-white bg-opacity-50">
         ✨ Tap a square when you find a match! ✨
     </p>
+    {% endif %}
 
     <!-- Bingo Celebration Notification -->
     {% if session.has_bingo %}
@@ -27,7 +45,11 @@
 
     <!-- Board Container -->
     <div class="flex-1 flex items-center justify-center p-4">
+        {% if session.is_scavenger_mode %}
+            {% include "components/scavenger_list.html" %}
+        {% else %}
         {% include "components/bingo_board.html" %}
+        {% endif %}
     </div>
 </div>
 
