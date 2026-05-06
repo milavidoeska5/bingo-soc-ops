@@ -1,9 +1,33 @@
 from typing import Final
 
 FREE_SPACE: Final = "FREE SPACE"
-
 QUESTIONS: Final[list[str]] = [
-    "has debugged code in their sleep",
+    "Has tried rock climbing or bouldering",
+    "Can play a musical instrument",
+    "Has run a 5K, 10K, or longer race",
+    "Knows how to knit, crochet, or sew",
+    "Has surfed, paddleboarded, or kayaked",
+    "Has tried pottery or ceramics",
+    "Follows a sports team passionately",
+    "Has gone camping in the wilderness",
+    "Practices yoga, martial arts, or dance",
+    "Has grown their own vegetables or herbs",
+    "Has learned a skill from a YouTube video",
+    "Has done something extreme (skydiving, bungee jumping…)",
+    "Can cook a dish from scratch without a recipe",
+    "Has completed a DIY home or craft project",
+    "Speaks more than one language",
+    "Has traveled solo to a new city or country",
+    "Has won a competition of any kind",
+    "Has a creative outlet (painting, writing, music…)",
+    "Has tried a team sport as an adult",
+    "Knows a card trick or magic trick — show us!",
+    "Has hiked a mountain or long trail",
+    "Has ridden a horse, surfboard, or skateboard",
+    "Challenge: beat someone at rock-paper-scissors right now!",
+    "Has tried a completely new hobby in the last year",
+]
+debugged code in their sleep",
     "once named a variable 'foo'",
     "uses Stack Overflow as documentation",
     "has blamed the user instead of the code",
@@ -26,5 +50,4 @@ QUESTIONS: Final[list[str]] = [
     "Teach us your worst debugging hack",
     "Show your messiest codebase folder",
     "Impersonate how you comment your code",
-    "Do the most chaotic keyboard smash",
-]
+    "Do the most chaotic keyboard smashtest
