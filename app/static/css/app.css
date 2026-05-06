@@ -8,7 +8,39 @@ body,
 body {
     font-family: system-ui, -apple-system, sans-serif;
     -webkit-tap-highlight-color: transparent;
+    background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 50%, #cffafe 100%);
+    color: #1f2937;
 }
+
+/* ===== COLOR PALETTE (Playful Pastel-Bright) ===== */
+
+/* Playful Primary Colors */
+.bg-primary { background-color: #7c3aed; }
+.bg-primary-soft { background-color: #e9d5ff; }
+.text-primary { color: #7c3aed; }
+
+/* Playful Secondary Colors */
+.bg-secondary { background-color: #14b8a6; }
+.bg-secondary-soft { background-color: #d1fae5; }
+.text-secondary { color: #14b8a6; }
+
+/* Vibrant Accents */
+.bg-accent-pink { background-color: #ec4899; }
+.bg-accent-yellow { background-color: #fbbf24; }
+.bg-accent-orange { background-color: #f97316; }
+.text-accent-pink { color: #ec4899; }
+.text-accent-yellow { color: #fbbf24; }
+
+/* Celebratory Colors */
+.bg-celebrate-mint { background-color: #a7f3d0; }
+.bg-celebrate-gold { background-color: #fcd34d; }
+.text-celebrate-mint { color: #059669; }
+.text-celebrate-gold { color: #92400e; }
+
+/* Text & Neutral Colors */
+.text-heading { color: #7c3aed; font-weight: 800; }
+.text-dark { color: #1f2937; }
+.text-light { color: #6b7280; }
 
 /* Tailwind-like utility classes */
 .h-full { height: 100%; }
@@ -34,6 +66,7 @@ body {
 .p-3 { padding: 0.75rem; }
 .p-4 { padding: 1rem; }
 .p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
 .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
 .px-4 { padding-left: 1rem; padding-right: 1rem; }
 .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
@@ -42,21 +75,19 @@ body {
 .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
 .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
 .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
 
 .mb-2 { margin-bottom: 0.5rem; }
 .mb-3 { margin-bottom: 0.75rem; }
 .mb-4 { margin-bottom: 1rem; }
 .mb-6 { margin-bottom: 1.5rem; }
 .mb-8 { margin-bottom: 2rem; }
+.mb-10 { margin-bottom: 2.5rem; }
 .mx-auto { margin-left: auto; margin-right: auto; }
 
 .bg-white { background-color: #ffffff; }
 .bg-gray-50 { background-color: #f9fafb; }
 .bg-gray-100 { background-color: #f3f4f6; }
-.bg-amber-100 { background-color: #fef3c7; }
-.bg-amber-200 { background-color: #fde68a; }
-.bg-accent { background-color: #2563eb; }
-.bg-marked { background-color: #dcfce7; }
 .bg-black\/50 { background-color: rgba(0, 0, 0, 0.5); }
 
 .text-white { color: #ffffff; }
@@ -65,38 +96,56 @@ body {
 .text-gray-700 { color: #374151; }
 .text-gray-800 { color: #1f2937; }
 .text-gray-900 { color: #111827; }
-.text-green-600 { color: #16a34a; }
-.text-green-800 { color: #166534; }
-.text-amber-500 { color: #f59e0b; }
-.text-amber-800 { color: #92400e; }
-.text-amber-900 { color: #78350f; }
 
 .text-xs { font-size: 0.75rem; line-height: 1rem; }
 .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
 .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
-.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
-.text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
-.text-5xl { font-size: 3rem; line-height: 1; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; font-weight: 700; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; font-weight: 800; }
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; font-weight: 800; }
+.text-4xl { font-size: 2.25rem; line-height: 2.5rem; font-weight: 800; }
+.text-5xl { font-size: 3rem; line-height: 1; font-weight: 900; letter-spacing: 0.05em; }
 
+.font-regular { font-weight: 400; }
 .font-semibold { font-weight: 600; }
 .font-bold { font-weight: 700; }
+.font-extra-bold { font-weight: 800; }
+.font-black { font-weight: 900; }
+
+.letter-tight { letter-spacing: -0.025em; }
+.letter-wide { letter-spacing: 0.025em; }
+.letter-wider { letter-spacing: 0.05em; }
+
+.uppercase { text-transform: uppercase; }
 
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 
 .border { border-width: 1px; }
+.border-2 { border-width: 2px; }
 .border-b { border-bottom-width: 1px; }
-.border-gray-200 { border-color: #e5e7eb; }
-.border-gray-300 { border-color: #d1d5db; }
-.border-amber-400 { border-color: #fbbf24; }
-.border-marked-border { border-color: #22c55e; }
+.border-primary { border-color: #7c3aed; }
+.border-secondary { border-color: #14b8a6; }
+.border-accent-pink { border-color: #ec4899; }
 
 .rounded { border-radius: 0.25rem; }
 .rounded-lg { border-radius: 0.5rem; }
 .rounded-xl { border-radius: 0.75rem; }
+.rounded-2xl { border-radius: 1rem; }
+.rounded-full { border-radius: 9999px; }
 
+.shadow-none { box-shadow: none; }
 .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+.shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+.shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
 .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+
+/* Glow Effects */
+.glow-pink { box-shadow: 0 0 20px rgba(236, 72, 153, 0.4), inset 0 0 10px rgba(236, 72, 153, 0.1); }
+.glow-purple { box-shadow: 0 0 20px rgba(124, 58, 237, 0.3), inset 0 0 10px rgba(124, 58, 237, 0.1); }
+.glow-teal { box-shadow: 0 0 20px rgba(20, 184, 166, 0.3), inset 0 0 10px rgba(20, 184, 166, 0.1); }
+.glow-gold { box-shadow: 0 0 20px rgba(251, 191, 36, 0.3), inset 0 0 10px rgba(251, 191, 36, 0.1); }
+.glow-intense { box-shadow: 0 0 30px rgba(236, 72, 153, 0.6), 0 0 60px rgba(124, 58, 237, 0.3); }
 
 .space-y-2 > * + * { margin-top: 0.5rem; }
 
@@ -113,12 +162,14 @@ body {
 
 .select-none { user-select: none; }
 
-.transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
-.transition-colors { transition-property: color, background-color, border-color; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+.transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 200ms; }
+.transition-colors { transition-property: color, background-color, border-color; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 200ms; }
+.transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 200ms; }
 .duration-150 { transition-duration: 150ms; }
+.duration-200 { transition-duration: 200ms; }
+.duration-250 { transition-duration: 250ms; }
 
-button:active .active\:bg-gray-100 { background-color: #f3f4f6; }
-button:active .active\:bg-accent-light { background-color: #3b82f6; }
+button:active .active\:scale-95 { transform: scale(0.95); }
 
 button {
     cursor: pointer;
@@ -147,6 +198,8 @@ button:disabled {
     min-height: 60px;
 }
 
+/* ===== PLAYFUL ANIMATIONS ===== */
+
 @keyframes bounce {
     0%, 100% {
         transform: translateY(-25%);
@@ -158,6 +211,201 @@ button:disabled {
     }
 }
 
-.animate-\[bounce_0\.5s_ease-out\] {
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
+    }
+    50% {
+        opacity: 0.8;
+        box-shadow: 0 0 40px rgba(236, 72, 153, 0.6);
+    }
+}
+
+@keyframes bingo-glow {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 30px rgba(124, 58, 237, 0.8), 0 0 60px rgba(236, 72, 153, 0.6);
+        transform: scale(1.05);
+    }
+}
+
+@keyframes scale-pop {
+    0% {
+        transform: scale(0.95);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(20px);
+    }
+    70% {
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes gentle-float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes shimmer {
+    0%, 100% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes rainbow-pulse {
+    0% {
+        color: #ec4899;
+    }
+    25% {
+        color: #f97316;
+    }
+    50% {
+        color: #fbbf24;
+    }
+    75% {
+        color: #14b8a6;
+    }
+    100% {
+        color: #7c3aed;
+    }
+}
+
+.animate-bounce {
     animation: bounce 0.5s ease-out;
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-bingo-glow {
+    animation: bingo-glow 1.2s ease-in-out infinite;
+}
+
+.animate-scale-pop {
+    animation: scale-pop 0.4s ease-out;
+}
+
+.animate-bounce-in {
+    animation: bounce-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-gentle-float {
+    animation: gentle-float 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+    animation: shimmer 2s infinite;
+    background-size: 2000px 100%;
+}
+
+.animate-rainbow-pulse {
+    animation: rainbow-pulse 1.5s ease-in-out;
+}
+
+/* Hover and interaction effects */
+.hover-scale {
+    transition: transform 200ms ease-out;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.hover-lift {
+    transition: all 200ms ease-out;
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.active-scale:active {
+    transform: scale(0.95);
+}
+
+/* Modal-specific styles to keep pop-up layout consistent and readable */
+.modal-overlay {
+    background-color: rgba(17, 24, 39, 0.55);
+    backdrop-filter: blur(2px);
+}
+
+.modal-card {
+    width: 100%;
+    max-width: 22rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 3px solid #ffffff;
+    background: linear-gradient(135deg, #f472b6 0%, #fb923c 45%, #facc15 100%);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
+}
+
+.modal-sparkles {
+    margin-bottom: 0.75rem;
+    font-size: 1.9rem;
+    line-height: 1;
+}
+
+.modal-title {
+    margin: 0 0 0.4rem;
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+}
+
+.modal-subtitle {
+    margin: 0 0 1.1rem;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.modal-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 9999px;
+    border: 3px solid #7c3aed;
+    background-color: #ffffff;
+    color: #7c3aed;
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
+}
+
+.modal-caption {
+    margin: 0.85rem 0 0;
+    color: #fff7ed;
+    font-size: 0.85rem;
+    font-weight: 700;
 }

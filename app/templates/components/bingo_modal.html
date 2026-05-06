@@ -1,15 +1,32 @@
-<div class="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-    <div class="bg-white rounded-xl p-6 max-w-xs w-full text-center shadow-xl animate-[bounce_0.5s_ease-out]">
-        <div class="text-5xl mb-4">🎉</div>
-        <h2 class="text-3xl font-bold text-amber-500 mb-2">BINGO!</h2>
-        <p class="text-gray-600 mb-6">You completed a line!</p>
+<div
+    class="modal-overlay fixed inset-0 flex items-center justify-center p-4 z-50"
+    style="background-color: rgba(17, 24, 39, 0.55); backdrop-filter: blur(2px);">
+    <div
+        class="modal-card text-center animate-bounce-in"
+        style="width: 100%; max-width: 22rem; padding: 1.5rem; border-radius: 1rem; border: 3px solid #ffffff; background: linear-gradient(135deg, #f472b6 0%, #fb923c 45%, #facc15 100%); box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);">
+        <div class="modal-sparkles" aria-hidden="true">🎉 ✨ 🎉</div>
+
+        <h2
+            class="modal-title animate-bingo-glow"
+            style="margin: 0 0 0.4rem; color: #ffffff; font-size: 2.5rem; font-weight: 900; letter-spacing: 0.05em;">
+            BINGO!
+        </h2>
+
+        <p class="modal-subtitle" style="margin: 0 0 1.1rem; color: #ffffff; font-size: 1.05rem; font-weight: 700;">
+            You completed a line!
+        </p>
 
         <button
             hx-post="/dismiss-modal"
             hx-target="#game-container"
             hx-swap="outerHTML"
-            class="w-full bg-accent text-white font-semibold py-3 px-6 rounded-lg active:bg-accent-light transition-colors">
+            class="modal-button hover-scale active-scale"
+            style="width: 100%; padding: 0.75rem 1rem; border-radius: 9999px; border: 3px solid #7c3aed; background-color: #ffffff; color: #7c3aed; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);">
             Keep Playing
         </button>
+
+        <p class="modal-caption" style="margin: 0.85rem 0 0; color: #fff7ed; font-size: 0.85rem; font-weight: 700;">
+            Great job mixing and mingling!
+        </p>
     </div>
 </div>

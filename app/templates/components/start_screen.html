@@ -1,25 +1,54 @@
 <div id="game-container">
-<div class="flex flex-col items-center justify-center min-h-full p-6 bg-gray-50">
-    <div class="text-center max-w-sm">
-        <h1 class="text-4xl font-bold text-gray-900 mb-2">Soc Ops</h1>
-        <p class="text-lg text-gray-600 mb-8">Social Bingo</p>
+<div class="flex flex-col items-center justify-center min-h-full p-6">
+    <div class="text-center max-w-md py-8">
+        <!-- Hero Title with Playful Effects -->
+        <div class="mb-3">
+            <h1 class="text-5xl font-black text-primary letter-wider mb-2 animate-gentle-float">
+                🎉 Soc Ops
+            </h1>
+            <p class="text-2xl font-extra-bold text-secondary mb-1">Social Bingo</p>
+            <p class="text-lg text-primary-soft font-semibold letter-wide">Let's mingle & win!</p>
+        </div>
 
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 mb-8">
-            <h2 class="font-semibold text-gray-800 mb-3">How to play</h2>
-            <ul class="text-left text-gray-600 text-sm space-y-2">
-                <li>• Find people who match the questions</li>
-                <li>• Tap a square when you find a match</li>
-                <li>• Get 5 in a row to win!</li>
+        <!-- Decorative divider -->
+        <div class="my-8 flex items-center justify-center gap-2">
+            <div class="h-1 w-12 bg-gradient-to-r from-secondary to-accent-pink rounded-full"></div>
+            <span class="text-3xl">✨</span>
+            <div class="h-1 w-12 bg-gradient-to-r from-accent-pink to-accent-yellow rounded-full"></div>
+        </div>
+
+        <!-- How to Play Card - Playful -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg border-2 border-primary-soft mb-10 hover-lift">
+            <h2 class="font-extra-bold text-primary text-xl mb-4 letter-wide">HOW TO PLAY</h2>
+            <ul class="text-left text-gray-700 text-base space-y-3 font-semibold">
+                <li class="flex items-start gap-3">
+                    <span class="text-2xl">👥</span>
+                    <span>Find people matching the questions</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-2xl">✅</span>
+                    <span>Tap a square when you find a match</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-2xl">🎊</span>
+                    <span>Get 5 in a row to win!</span>
+                </li>
             </ul>
         </div>
 
+        <!-- CTA Button - Bold & Playful -->
         <button
             hx-post="/start"
             hx-target="#game-container"
             hx-swap="outerHTML"
-            class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors">
-            Start Game
+            class="w-full bg-gradient-to-r from-primary to-accent-pink text-white font-black py-4 px-8 rounded-full text-lg uppercase letter-wide shadow-lg hover-scale active-scale transition-all duration-200 hover:shadow-xl">
+            🎮 Let's Play
         </button>
+
+        <!-- Fun Footer Text -->
+        <p class="mt-8 text-sm text-primary font-semibold opacity-75">
+            No experience needed. Just be ready to mingle! 🌟
+        </p>
     </div>
 </div>
 </div>
