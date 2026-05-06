@@ -1,1 +1,39 @@
-<div class=\"card-deck-container\" style=\"display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; gap: 2rem; padding: 1.5rem;\">\n    <!-- Progress Header -->\n    <div class=\"text-center\">\n        <h2 class=\"card-deck-header\" style=\"font-size: 1.875rem; font-weight: 900; color: #c084fc; text-align: center;\">🎴 Card Deck</h2>\n        <p class=\"card-deck-progress\" style=\"font-size: 1.125rem; font-weight: 600; color: #06b6d4; text-align: center;\">\n            Card {{ session.card_deck_progress }} of {{ session.card_deck_total }}\n        </p>\n    </div>\n\n    <!-- Card Display -->\n    <button\n        hx-post=\"/draw-card\"\n        hx-target=\"#game-container\"\n        hx-swap=\"outerHTML\"\n        {% if session.is_deck_complete %}disabled{% endif %}\n        class=\"card {% if session.current_card %}card-new{% endif %}\"\n        aria-label=\"Tap to draw next card\"\n        style=\"display: flex; align-items: center; justify-content: center; width: 100%; max-width: 320px; aspect-ratio: 3.5 / 5; padding: 1.5rem; border-radius: 0.75rem; background: linear-gradient(135deg, #f3e8ff 0%, #cffafe 100%); border: 2px solid #c084fc; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); transition: all 300ms; cursor: pointer; min-height: 400px;\">\n        {% if session.current_card %}\n        <span class=\"card-text\" style=\"font-size: 1.25rem; font-weight: 700; color: #c084fc; text-align: center; word-break: break-word; line-height: 1.4;\">{{ session.current_card.text }}</span>\n        {% else %}\n        <span class=\"card-text\" style=\"font-size: 1.25rem; font-weight: 700; color: #c084fc; text-align: center; word-break: break-word; line-height: 1.4;\">Tap to start!</span>\n        {% endif %}\n    </button>\n\n    <!-- Completion Message -->\n    {% if session.is_deck_complete %}\n    <div class=\"text-center\">\n        <p class=\"text-xl font-bold text-primary mb-4\">🎉 You've drawn all {{ session.card_deck_total }} cards!</p>\n        <button\n            hx-post=\"/reset\"\n            hx-target=\"#game-container\"\n            hx-swap=\"outerHTML\"\n            class=\"px-6 py-3 bg-gradient-to-r from-primary to-accent-pink text-white font-bold rounded-lg shadow-lg hover-scale transition-all duration-200\">\n            Play Again\n        </button>\n    </div>\n    {% endif %}\n</div>\n
+<div class="card-deck-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; gap: 2rem; padding: 1.5rem;">
+    <!-- Progress Header -->
+    <div class="text-center">
+        <h2 class="card-deck-header" style="font-size: 1.875rem; font-weight: 900; color: #c084fc; text-align: center;">🎴 Card Deck</h2>
+        <p class="card-deck-progress" style="font-size: 1.125rem; font-weight: 600; color: #06b6d4; text-align: center;">
+            Card {{ session.card_deck_progress }} of {{ session.card_deck_total }}
+        </p>
+    </div>
+
+    <!-- Card Display -->
+    <button
+        hx-post="/draw-card"
+        hx-target="#game-container"
+        hx-swap="outerHTML"
+        {% if session.is_deck_complete %}disabled{% endif %}
+        class="card {% if session.current_card %}card-new{% endif %}"
+        aria-label="Tap to draw next card"
+        style="display: flex; align-items: center; justify-content: center; width: 100%; max-width: 320px; aspect-ratio: 3.5 / 5; padding: 1.5rem; border-radius: 0.75rem; background: linear-gradient(135deg, #f3e8ff 0%, #cffafe 100%); border: 2px solid #c084fc; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); transition: all 300ms; cursor: pointer; min-height: 400px;">
+        {% if session.current_card %}
+        <span class="card-text" style="font-size: 1.25rem; font-weight: 700; color: #c084fc; text-align: center; word-break: break-word; line-height: 1.4;">{{ session.current_card.text }}</span>
+        {% else %}
+        <span class="card-text" style="font-size: 1.25rem; font-weight: 700; color: #c084fc; text-align: center; word-break: break-word; line-height: 1.4;">Tap to start!</span>
+        {% endif %}
+    </button>
+
+    <!-- Completion Message -->
+    {% if session.is_deck_complete %}
+    <div class="text-center">
+        <p class="text-xl font-bold text-primary mb-4">🎉 You've drawn all {{ session.card_deck_total }} cards!</p>
+        <button
+            hx-post="/reset"
+            hx-target="#game-container"
+            hx-swap="outerHTML"
+            class="px-6 py-3 bg-gradient-to-r from-primary to-accent-pink text-white font-bold rounded-lg shadow-lg hover-scale transition-all duration-200">
+            Play Again
+        </button>
+    </div>
+    {% endif %}
+</div>
